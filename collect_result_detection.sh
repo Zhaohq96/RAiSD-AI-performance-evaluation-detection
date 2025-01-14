@@ -9,7 +9,7 @@ output_file="$2""Collection.csv"
 echo -e "Tool\tCalculation_training_summary_statistics_time (sec)\tTraining_time (sec)\tCalculation_inference_summary_statistics_time (sec)\tInference_time (sec)\tSuccess_rate\tSuccess_rate_center\tTPR" > "$output_file"
 
 # Collect diploshic results
-result_file="$1""diplo/Detection_result.txt"
+result_file="$1""diploshic/Detection_result.txt"
 Inference_data_processing_time=$(sed -n '3p' $result_file)
 
 Inference_time=$(sed -n '5p' "$result_file")
