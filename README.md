@@ -24,19 +24,25 @@ If you follow the instructions to run the example dataset in repository _RAiSD-A
 ```
 bash scan_dataset.sh diploshic result-example/diploSHIC/train/model/ dataset-example/test/ result-scan/diploshic/ 9
 ```
+The results will be stored in _result-scan/diploshic/Detection_result.txt_.
+
 ### t-rex
 ```
 bash scan_dataset.sh t-rex dataset-example/train/ dataset-example/test/ result-scan/t-rex/ 9 example
 ```
+The results will be stored in _result-scan/t-rex/Results/Results.txt_.
+
 ### faster-nn
 ```
 bash scan_dataset.sh faster-nn result-example/FASTER-NN/RAiSD_Model.FASTER-NNexampleModel/ dataset-example/test/ result-scan/faster-nn/ 9 example faster-nn-example
 ```
+The results will be stored in _result-scan/faster-nn/Results.txt_.
 
 ### Collect result
 ```
-
+sh collect_result_detection.sh result-scan/ result-scan/
 ```
+where the first arguement input is the path to input folder that contains the output folders of the tools with the names _diploshic_, _t-rex_ and _faster-nn_, and the second arguement input is the path to output folder. The results will be stored in _result-scan/Collection.csv_.
 
 ## Usage of each script
 ### scan_dataset.sh
@@ -79,7 +85,7 @@ Usage of scan_dataset_t-rex.sh
 
 bash scan_dataset_t-rex.sh -n path_training_file_neutral -s path_training_file_sweep -N path_inference_file_neutral -S path_inference_file_sweep -o path_output -w window_size -l length -t num_simulation_training -T num_simulation_inference -r rank -g grid_size
 
-The results will be stored in the file path_output/Results.txt
+The results will be stored in the file path_output/Results/Results.txt
 ```
 
 ### scan_dataset_faster-nn.sh
