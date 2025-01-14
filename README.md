@@ -17,6 +17,27 @@ After moving the scripts, to compile grid.c by the command:
 gcc grid.c -o grid -lm
 ```
 
+## Quick example
+If you follow the instructions to run the example dataset in repository _RAiSD-AI-performance-evaluation_, you should have a folder named _result-example/_ that contains the trained models of all the tools. Then, you can test the following tools on the example dataset with the commands:
+
+### diploshic
+```
+bash scan_dataset.sh diploshic result-example/diploSHIC/train/model/ dataset-example/test/ result-scan/diploshic/ 9
+```
+### t-rex
+```
+bash scan_dataset.sh t-rex dataset-example/train/ dataset-example/test/ result-scan/t-rex/ 9 example
+```
+### faster-nn
+```
+bash scan_dataset.sh faster-nn result-example/FASTER-NN/RAiSD_Model.FASTER-NNexampleModel/ dataset-example/test/ result-scan/faster-nn/ 9 example faster-nn-example
+```
+
+### Collect result
+```
+
+```
+
 ## Usage of each script
 ### scan_dataset.sh
 ```
