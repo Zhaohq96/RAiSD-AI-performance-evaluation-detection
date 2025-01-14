@@ -12,6 +12,11 @@ wget https://github.com/Zhaohq96/RAiSD-AI-performance-evaluation-detection/archi
 
 After downloading the repository, please move the folder _T-REx/_ to the path _TOOLS/_ of _RAiSD-AI-performance-evaluation_. Then, move all scripts to the path _RAiSD-AI-performance-evaluation_. NOTE that if you follow the instructions in repository _RAiSD-AI-performance-evaluation_, the files should be moved to the path _RAiSD-AI/RAiSD-AI-master_.
 
+After moving the scripts, to compile grid.c by the command:
+```
+gcc grid.c -o grid -lm
+```
+
 ## Usage of each script
 ### scan_dataset.sh
 ```
