@@ -4,7 +4,7 @@ show_help() {
     echo "Usage of scan_dataset.sh"
     echo
     echo "bash scan_dataset.sh tool_name path_training_data_folder(model_folder) path_inference_folder path_output grid_size (evaluataion_dataset) (run_ID)"
-    echo "Note that the path_training_data_folder and path_inference_folder should contain two files, 1) neutral.ms and 2) selsweep.ms."
+    echo "Note that the path_training_data_folder and path_inference_folder should contain two files, 1) neutral.ms and 2) selsweep.ms and please add '/' to the end of the folder path."
     echo
     echo "Specific tool:"
     echo "diploshic"
@@ -14,8 +14,10 @@ show_help() {
     echo "bash process_dataset.sh t-rex path_training_data_folder path_inference_folder path_output grid_size evaluataion_dataset"
     echo
     echo "Note that evaluation_dataset is only available for t-rex to use the optimized rank value for training and testing"
+    echo
     echo "faster-nn"
     echo "bash process_dataset.sh faster-nn path_trained_model_folder path_inference_folder path_output grid_size run_ID"
+    echo
     echo "Quick example:"
     echo "bash scan_dataset.sh t-rex dataset-example/train/ dataset-example/test/ result-scan/t-rex/ 9 example"
     echo "bash scan_dataset.sh diploshic result-example/diploSHIC/train/model/ dataset-example/test/ result-scan/diploshic/ 9"
