@@ -348,14 +348,15 @@ int main (int argc, char ** argv)
 	char sstring [1000];
 	char filename [50];
 	char new_name [1000];
-	char flag [100];
+	char flag [100], flag_fix [100];
 	//sprintf(filename, "%s", outname);
 	//fout = fopen(filename, "w");
 	int samples, populations;
 	int skip;
 	
 	fscanf(fp, "%s", flag);
-	
+	strcpy(flag_fix, flag);
+	//printf("%s", flag);
 	if(strcmp(flag, "command:") == 0)
 	{
 		fscanf(fp, "%s", tstring);
@@ -366,6 +367,7 @@ int main (int argc, char ** argv)
 		printf("number of samples: %d\n", samples);
 		for(skip=0;skip<10;skip++)fscanf(fp, "%s", tstring);
 		populations = atoi(tstring);
+		//printf("%d", populations);
 		//populations = 10000;
 		//fprintf(fout, "%d ", populations);
 		printf("number of populations: %d\n", populations);
@@ -405,8 +407,8 @@ int main (int argc, char ** argv)
 		fout = fopen(filename, "w");
 		fprintf(fout, "./ms ");
 		fprintf(fout, "%d ", samples);
-		
-		if(strcmp(flag, "command:") == 0)
+		//printf("%s", flag_fix);
+		if(strcmp(flag_fix, "command:") == 0)
 		{
 			while(strcmp(tstring, "d"))
 			{
@@ -433,7 +435,7 @@ int main (int argc, char ** argv)
 		// get the sites information of this population		
 		fscanf(fp, "%s", tstring);
 		int sites = atoi(tstring);
-		if(strcmp(flag, "command:") == 0)sites = sites - 1;
+		if(strcmp(flag_fix, "command:") == 0)sites = sites - 1;
 		printf("site of the population %d is: %d\n", j+1, sites);
 		//if(win_snp <= sites)//fprintf(fout, " %d\n", win_snp);
 		//if(win_snp > sites)//fprintf(fout, " %d\n", sites);
@@ -444,7 +446,7 @@ int main (int argc, char ** argv)
 		int *positions = (int*)calloc(sites, sizeof(int));
 		float *position = (float*)malloc(sizeof(float)*sites);
 		int position_state = 0;
-		if(strcmp(flag, "command:") == 0)
+		if(strcmp(flag_fix, "command:") == 0)
 		{
 			for(i=0;i<sites;i++)
 			{
@@ -502,7 +504,7 @@ int main (int argc, char ** argv)
 			fprintf(fout, "segsites: ");
 			fprintf(fout, "%d\n", sites);
 			fprintf(fout, "positions: ");
-			if(strcmp(flag, "command:") == 0)
+			if(strcmp(flag_fix, "command:") == 0)
 			{
 				for(i=0;i<sites;i++)
 				{
@@ -716,10 +718,12 @@ int main (int argc, char ** argv)
 				for(i=0;i<sites-1;i++)
 				{
 					if(positions[i]<=(int)(length*g)/(grid_size+1) && positions[i+1]>(int)(length*g)/(grid_size+1))index_center=i;
+					//printf("%d ", positions[i]);
 				}
 				
 				//printf("center is:%d\n", index_center);
 				fprintf(fout_pos, "%d ", positions[index_center]);
+				//printf("%d ", positions[index_center]);
 				//printf("%d %d %s\n", win_snp/2, win_site, mode);
 				
 				int width, left_boundry, right_boundry;
