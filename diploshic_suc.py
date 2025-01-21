@@ -78,15 +78,17 @@ def main(argv):
 			pos_list_neut.append(positions_neut[i][j])
 			probs_list_neut.append(float(probs_neut[j+1][5]))
 		prob_sweep_max.append(max(probs_list_sweep))
-		index_sweep=probs_list_sweep.index(max(probs_list_sweep))
+		max_sweep=max(probs_list_sweep)
+		#index_sweep=probs_list_sweep.index(max(probs_list_sweep))
 		prob_neut_max.append(max(probs_list_neut))
 		index_neut=probs_list_neut.index(max(probs_list_neut))
-		position_sweep=pos_list_sweep[index_sweep]
-		position_list_sweep.append(position_sweep)
 		probability_list_sweep.append(max(probs_list_sweep))
+		#position_sweep=pos_list_sweep[index_sweep]
+		#position_list_sweep.append(position_sweep)
+		position_list_sweep.append([pos_sim_list[i][index] for index, value in enumerate(probs_list_sweep) if value == max_sweep])
 		#print(position)
-		err=float((int(position_sweep)-int(float(target)*int(length)))/int(length))
-		error_list.append(err)
+		#err=float((int(position_sweep)-int(float(target)*int(length)))/int(length))
+		#error_list.append(err)
 		f_pro_sweep.close()
 		f_pro_neut.close()
 	f_pos_sweep.close()
@@ -94,8 +96,14 @@ def main(argv):
 	ans=0
 	#print(error_list)
 	for i in range(int(num_sim)):
-		if abs(error_list[i]) <= float(error):
-			ans+=1
+		#print(int(float(float(target)-float(error))*int(length)))
+		#print(probability_list_sweep[i])
+		#print(int(float(float(target)+float(error))*int(length)))
+		for pos in position_list_sweep[i]:	
+			#print(pos)
+			if int(pos) >= int(float(float(target)-float(error))*int(length)) and int(pos) <= int(float(float(target)+float(error))*int(length)):
+				ans+=1
+				break
 	success_rate=float(ans/int(num_sim))
 	
 	ans=0
@@ -126,9 +134,23 @@ def main(argv):
 			ans+=1
 	TPR=float(ans/int(num_sim))
 	
+	ans=0
+	#print(int(float(float(target)-float(error))*int(length)))
+	for i in range(int(num_sim)):
+		for j in range(int(grid)):
+			#print(int(pos_sim_list[i][j]))
+			if int(pos_sim_list[i][j]) >= int(float(float(target)-float(error))*int(length)) and int(pos_sim_list[i][j]) <= int(float(float(target)+float(error))*int(length)):
+				if float(prob_sim_list[i][j]) > float(threshold):
+					ans+=1
+					break
+	#print(pos_sim_list)
+	#print(prob_sim_list)
+	#print(ans)
+	success_rate_threshold=float(ans/int(num_sim))
 	
 	print("Success rate of is: {}".format(success_rate))
 	print("Success rate (center) of is: {}".format(success_rate_center))
+	print("Success rate (threshold) of is: {}".format(success_rate_threshold))
 	print("TPR of is: {}".format(TPR))
 	with open(sweep_out_path, "w") as file:
 		file.write("Simulation\tPosition\tProbability\n")

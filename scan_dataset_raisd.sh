@@ -23,6 +23,7 @@ target=$5
 grid_size=$6
 error=$7
 run_ID=$8
+num_sim=$9
 
 distance=$(echo "$length * $error" | bc | awk '{print int($1)}')
 echo $distance
@@ -35,11 +36,11 @@ fi
 
 
 conda activate raisd-ai
-./RAiSD-AI -n "$run_ID"_neut -mdl "$model_path" -f -op SWP-SCN -I "$input_path"neutral.ms -L $length -frm -T $target -d $distance -G $grid_size -pci 1 1 -s
+./RAiSD-AI -n "$run_ID"_neut -f -I "$input_path"neutral.ms -L $length -frm -T $target -d $distance -G $grid_size -s
 if [ "$9" = "0" ]; then
-	./RAiSD-AI -n "$run_ID"_sweep -mdl "$model_path" -f -op SWP-SCN -I "$input_path"selsweep.ms -L $length -frm -T $target -d $distance -G $grid_size -pci 1 1 -s
+	./RAiSD-AI -n "$run_ID"_sweep -f -I "$input_path"selsweep.ms -L $length -frm -T $target -d $distance -G $grid_size -s
 elif [ "$9" = "1" ]; then
-	./RAiSD-AI -n "$run_ID"_sweep -mdl "$model_path" -f -op SWP-SCN -I "$input_path"selsweep.ms -L $length -frm -T $target -d $distance -G $grid_size -pci 1 1 -s -b
+	./RAiSD-AI -n "$run_ID"_sweep -f -I "$input_path"selsweep.ms -L $length -frm -T $target -d $distance -G $grid_size -s -b
 fi
 
 mv RAiSD_Info."$run_ID"_neut $output

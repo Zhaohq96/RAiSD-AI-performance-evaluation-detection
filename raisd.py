@@ -53,9 +53,9 @@ def main(argv):
 		pro_neut=[]
 		for j in range(int(grid)):
 			pos_list_sweep[i].append(int(file_sweep[j+1][0]))
-			prob_list_sweep[i].append(float(file_sweep[j+1][2]))
-			pro_sweep.append(float(file_sweep[j+1][2]))
-			pro_neut.append(float(file_neut[j+1][2]))
+			prob_list_sweep[i].append(float(file_sweep[j+1][1]))
+			pro_sweep.append(float(file_sweep[j+1][1]))
+			pro_neut.append(float(file_neut[j+1][1]))
 		#print(pos_list_sweep[i])
 		#print(i)	
 		prob_list_max_sweep.append(max(pro_sweep))
@@ -87,17 +87,7 @@ def main(argv):
 #	print(ans)
 	ans=0
 	#print(int(float(float(target)-float(error))*int(length)))
-	for i in range(int(num_sim)):
-		for j in range(int(grid)):
-			#print(int(pos_sim_list[i][j]))
-			if int(pos_list_sweep[i][j]) >= int(float(float(target)-float(error))*int(length)) and int(pos_list_sweep[i][j]) <= int(float(float(target)+float(error))*int(length)):
-				if float(prob_list_sweep[i][j]) > 0.5:
-					ans+=1
-					break
-	#print(pos_sim_list)
-	#print(prob_sim_list)
-	#print(ans)
-	success_rate_center=float(ans/int(num_sim))
+	
 	#print(success_rate_center)
 	
 	prob_list_max_neut.sort(reverse=1)
@@ -126,7 +116,7 @@ def main(argv):
 	
 	
 	print("Success rate of is: {}".format(success_rate))
-	print("Success rate (center) of is: {}".format(success_rate_center))
+	#print("Success rate (center) of is: {}".format(success_rate_center))
 	print("Success rate (threshold) of is: {}".format(success_rate_threshold))
 	print("TPR of is: {}".format(TPR))
 #	with open(sweep_out_path, "w") as file:

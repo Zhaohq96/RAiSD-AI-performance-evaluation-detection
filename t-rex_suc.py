@@ -103,36 +103,41 @@ def main(argv):
 			probs_list_en_neut.append(float(probs_en[int(skip)+int(grid)*i+j+1][1]))
 			probs_list_svm_neut.append(float(probs_svm[int(skip)+int(grid)*i+j+1][1]))
 			
-		index=probs_list_rf.index(max(probs_list_rf))
-		position=pos_list[index]
+		#index=probs_list_rf.index(max(probs_list_rf))
+		#position=pos_list[index]
 		#print(position)
-		position_list_rf.append(position)
+		max_sweep_rf=max(probs_list_rf)
+		max_sweep_en=max(probs_list_en)
+		max_sweep_svm=max(probs_list_svm)
+		position_list_rf.append([pos_sim_list[i][index] for index, value in enumerate(probs_list_rf) if value == max_sweep_rf])
+		position_list_en.append([pos_sim_list[i][index] for index, value in enumerate(probs_list_en) if value == max_sweep_en])
+		position_list_svm.append([pos_sim_list[i][index] for index, value in enumerate(probs_list_svm) if value == max_sweep_svm])
 		probability_list_rf.append(max(probs_list_rf))
 		probability_list_rf_neut.append(max(probs_list_rf_neut))
 		#print(position)
-		err_rf=float((int(position)-int(float(target)*int(length)))/int(length))
+		#err_rf=float((int(position)-int(float(target)*int(length)))/int(length))
 		#print(err_rf)
-		error_list_rf.append(err_rf)
+		#error_list_rf.append(err_rf)
 		f_pro_rf.close()
 		
 		index=probs_list_en.index(max(probs_list_en))
 		position=pos_list[index]
-		position_list_en.append(position)
+		#position_list_en.append(position)
 		probability_list_en.append(max(probs_list_en))
 		probability_list_en_neut.append(max(probs_list_en_neut))
 		#print(position)
-		err_en=float((int(position)-int(float(target)*int(length)))/int(length))
-		error_list_en.append(err_en)
+		#err_en=float((int(position)-int(float(target)*int(length)))/int(length))
+		#error_list_en.append(err_en)
 		f_pro_en.close()
 		
 		index=probs_list_svm.index(max(probs_list_svm))
 		position=pos_list[index]
-		position_list_svm.append(position)
+		#position_list_svm.append(position)
 		probability_list_svm.append(max(probs_list_svm))
 		probability_list_svm_neut.append(max(probs_list_svm_neut))
 		#print(position)
-		err_svm=float((int(position)-int(float(target)*int(length)))/int(length))
-		error_list_svm.append(err_svm)
+		#err_svm=float((int(position)-int(float(target)*int(length)))/int(length))
+		#error_list_svm.append(err_svm)
 		f_pro_svm.close()
 		#print(int(grid)*i+j+1)
 	#print(error_list_rf)
@@ -141,13 +146,38 @@ def main(argv):
 	ans_en=0
 	ans_svm=0
 	#print(error_list)
+	#print(position_list_rf)
+	#print(position_list_en)
+	#print(position_list_svm)
 	for i in range(int(num_sim)):
-		if abs(error_list_rf[i]) <= float(error):
-			ans_rf+=1
-		if abs(error_list_en[i]) <= float(error):
-			ans_en+=1
-		if abs(error_list_svm[i]) <= float(error):
-			ans_svm+=1
+		#print(int(float(float(target)-float(error))*int(length)))
+		#print(probability_list_sweep[i])
+		#print(int(float(float(target)+float(error))*int(length)))
+		for pos in position_list_rf[i]:	
+			#print(pos)
+			if int(pos) >= int(float(float(target)-float(error))*int(length)) and int(pos) <= int(float(float(target)+float(error))*int(length)):
+				ans_rf+=1
+				break
+				
+	for i in range(int(num_sim)):
+		#print(int(float(float(target)-float(error))*int(length)))
+		#print(probability_list_sweep[i])
+		#print(int(float(float(target)+float(error))*int(length)))
+		for pos in position_list_en[i]:	
+			#print(pos)
+			if int(pos) >= int(float(float(target)-float(error))*int(length)) and int(pos) <= int(float(float(target)+float(error))*int(length)):
+				ans_en+=1
+				break
+				
+	for i in range(int(num_sim)):
+		#print(int(float(float(target)-float(error))*int(length)))
+		#print(probability_list_sweep[i])
+		#print(int(float(float(target)+float(error))*int(length)))
+		for pos in position_list_svm[i]:	
+			#print(pos)
+			if int(pos) >= int(float(float(target)-float(error))*int(length)) and int(pos) <= int(float(float(target)+float(error))*int(length)):
+				ans_svm+=1
+				break
 			
 	success_rate_rf=float(ans_rf/int(num_sim))
 	success_rate_en=float(ans_en/int(num_sim))
@@ -221,7 +251,40 @@ def main(argv):
 	#print(probability_list_en)
 	#print(probability_list_svm_neut)
 	#print(probability_list_svm)
-	
+	ans_rf=0
+	ans_en=0
+	ans_svm=0
+	#print(prob_sim_list_rf)
+	#print(int(float(float(target)-float(error))*int(length)))
+	for i in range(int(num_sim)):
+		for j in range(int(grid)):
+			#print(int(pos_sim_list[i][j]))
+			if int(pos_sim_list[i][j]) >= int(float(float(target)-float(error))*int(length)) and int(pos_sim_list[i][j]) <= int(float(float(target)+float(error))*int(length)):
+				if float(prob_sim_list_rf[i][j]) > float(threshold_rf):
+					ans_rf+=1
+					break
+	for i in range(int(num_sim)):
+		for j in range(int(grid)):
+			#print(int(pos_sim_list[i][j]))
+			if int(pos_sim_list[i][j]) >= int(float(float(target)-float(error))*int(length)) and int(pos_sim_list[i][j]) <= int(float(float(target)+float(error))*int(length)):
+				if float(prob_sim_list_en[i][j]) > float(threshold_en):
+					ans_en+=1
+					break
+	for i in range(int(num_sim)):
+		for j in range(int(grid)):
+			#print(int(pos_sim_list[i][j]))
+			if int(pos_sim_list[i][j]) >= int(float(float(target)-float(error))*int(length)) and int(pos_sim_list[i][j]) <= int(float(float(target)+float(error))*int(length)):
+				if float(prob_sim_list_svm[i][j]) > float(threshold_svm):
+					ans_svm+=1
+					break
+	#print(pos_sim_list)
+	#print(prob_sim_list)
+	#print(ans_rf)
+	#print(ans_en)
+	#print(ans_svm)
+	success_rate_threshold_rf=float(ans_rf/int(num_sim))
+	success_rate_threshold_en=float(ans_en/int(num_sim))
+	success_rate_threshold_svm=float(ans_svm/int(num_sim))
 	#print(threshold_rf)
 	#print(threshold_en)
 	#print(threshold_svm)
@@ -240,6 +303,10 @@ def main(argv):
 	print("Success rate (center) of RF is: {}".format(success_rate_center_rf))
 	print("Success rate (center) of EN is: {}".format(success_rate_center_en))
 	print("Success rate (center) of SVM is: {}".format(success_rate_center_svm))
+	
+	print("Success rate (threshold) of RF is: {}".format(success_rate_threshold_rf))
+	print("Success rate (threshold) of EN is: {}".format(success_rate_threshold_en))
+	print("Success rate (threshold) of SVM is: {}".format(success_rate_threshold_svm))
 	
 	print("TPR of RF is: {}".format(TPR_rf))
 	print("TPR of EN is: {}".format(TPR_en))
