@@ -10,17 +10,17 @@ TOOL=diploshic
 MODEL=result-"$DATASET"-"$SIZE"/diploSHIC/train/model/
 #yes | bash remove_environment.sh $TOOL
 #bash install_environment.sh $TOOL
-bash scan_dataset.sh $TOOL $MODEL dataset-detection/"$DATASET"/ 1-result-scan-"$DATASET"/diploshic/ $GRID 1> /dev/null
+bash scan_dataset.sh $TOOL $MODEL dataset-detection/"$DATASET"/ result-scan-"$DATASET"/diploshic/ $GRID 1> /dev/null
 #yes | bash remove_environment.sh $TOOL
 
 TOOL=t-rex
 #yes | bash remove_environment.sh $TOOL
 #bash install_environment.sh $TOOL
-bash scan_dataset.sh $TOOL dataset-"$DATASET"-"$SIZE"/train/ dataset-detection/"$DATASET"/ 1-result-scan-"$DATASET"/t-rex/ $GRID "$DATASET" 1> /dev/null
+bash scan_dataset.sh $TOOL dataset-"$DATASET"-"$SIZE"/train/ dataset-detection/"$DATASET"/ result-scan-"$DATASET"/t-rex/ $GRID "$DATASET" 1> /dev/null
 #yes | bash remove_environment.sh $TOOL
 
 TOOL=raisd
-bash scan_dataset.sh $TOOL dataset-detection/"$DATASET"/ 1-result-scan-"$DATASET"/raisd/ raisd-"$DATASET"
+bash scan_dataset.sh $TOOL dataset-detection/"$DATASET"/ result-scan-"$DATASET"/raisd/ raisd-"$DATASET"
 
 #TOOL=raisd-ai
 #yes | bash remove_environment.sh $TOOL
@@ -28,11 +28,11 @@ bash scan_dataset.sh $TOOL dataset-detection/"$DATASET"/ 1-result-scan-"$DATASET
 
 CNN=faster-nn
 MODEL=result-"$DATASET"-"$SIZE"/FASTER-NN/RAiSD_Model.FASTER-NNdataset-"$DATASET"-"$SIZE"Model/
-bash scan_dataset.sh $CNN $MODEL dataset-detection/"$DATASET"/ 1-result-scan-"$DATASET"/faster-nn/ $GRID "$DATASET"-"$SIZE" "$DATASET"-"$SIZE" 1> /dev/null
+bash scan_dataset.sh $CNN $MODEL dataset-detection/"$DATASET"/ result-scan-"$DATASET"/faster-nn/ $GRID "$DATASET"-"$SIZE" "$DATASET"-"$SIZE" 1> /dev/null
 
 CNN=faster-nn-g-8
 MODEL=result-"$DATASET"-"$SIZE"/FASTER-NN-G8/RAiSD_Model.FASTER-NN-G8dataset-"$DATASET"-"$SIZE"Model/
-bash scan_dataset.sh $CNN  $MODEL dataset-detection/"$DATASET"/ 1-result-scan-"$DATASET"/faster-nn-g-8/ $GRID "$DATASET"-"$SIZE" "$DATASET"-"$SIZE" #1> /dev/null
+bash scan_dataset.sh $CNN  $MODEL dataset-detection/"$DATASET"/ result-scan-"$DATASET"/faster-nn-g-8/ $GRID "$DATASET"-"$SIZE" "$DATASET"-"$SIZE" #1> /dev/null
 
 
 #yes | bash remove_environment.sh $TOOL
