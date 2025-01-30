@@ -5,7 +5,7 @@ while [[ "$#" -gt 0 ]]; do
         -d) DATASET="$2"; shift ;;  # Capture dataset
         -g) GRID="$2"; shift ;;  # Capture generation count
         -s) SIZE="$2"; DIPLOSHIC_MODEL=Pretrained_Model/result-"$DATASET"-"$SIZE"/diploSHIC/train/model/; FASTER_NN_MODEL=Pretrained_Model/result-"$DATASET"-"$SIZE"/FASTER-NN/RAiSD_Model.FASTER-NNdataset-"$DATASET"-"$SIZE"Model/; FASTER_NN_G_8_MODEL=Pretrained_Model/result-"$DATASET"-"$SIZE"/FASTER-NN-G8/RAiSD_Model.FASTER-NN-G8dataset-"$DATASET"-"$SIZE"Model/; shift ;;  # Capture size
-        --diploshic-mode) DIPLOSHIC_MODEL="$2"; shift ;;  # Capture Diploshic mode path
+        --diploshic-model) DIPLOSHIC_MODEL="$2"; shift ;;  # Capture Diploshic mode path
         --faster-nn-model) FASTER_NN_MODEL="$2"; shift ;;  # Capture FasterNN model path
         --faster-nn-g-8-model) FASTER_NN_G_8_MODEL="$2"; shift ;;  # Capture FasterNN model path
         -h|--help) 
