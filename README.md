@@ -20,22 +20,10 @@ To download and move the source files to the RAiSD-AI folder:
 wget https://github.com/Zhaohq96/RAiSD-AI-performance-evaluation-detection/archive/refs/heads/master.zip; unzip master.zip; cd RAiSD-AI-performance-evaluation-detection-main/; mv README.md README-RAiSD-AI-performance-evaluation-detection.md; mv * ../; cd ..; rm -r RAiSD-AI-performance-evaluation-detection-main/; rm master.zip; gcc convert.c -o convert -lm; gcc grid.c -o grid -lm; wget -O dataset-example.tar.gz https://figshare.com/ndownloader/files/51400967; tar -xzvf dataset-example.tar.gz; chmod +x ./SCRIPTS/diploSHIC_scripts/diploSHIC_spliting.sh; wget -O dataset-detection.tar.gz https://figshare.com/ndownloader/files/52027712; tar -xzvf dataset-detection.tar.gz;
 ```
 
-## Download and path modification
-To download the repository by the command:
-
-```
-wget https://github.com/Zhaohq96/RAiSD-AI-performance-evaluation-detection/archive/refs/heads/master.zip; unzip master.zip;
-```
-
-After downloading the repository, please move the folder _T-REx/_ to the path _TOOLS/_ of _RAiSD-AI-performance-evaluation_. Then, move all scripts to the path _RAiSD-AI-performance-evaluation_. NOTE that if you follow the instructions in repository _RAiSD-AI-performance-evaluation_, the files should be moved to the path _RAiSD-AI/RAiSD-AI-master_.
-
-After moving the scripts, to compile grid.c by the command:
-```
-gcc grid.c -o grid -lm
-```
-
 ## Run detection with the trained model from RAiSD-AI-performance-evaluation repo
 If you have trained models using the process_all_datasets_all_tools.sh and obtained the results and model files in folders like _result-mild-bottleneck-1K_ that contains subfolder of each tool, please copy these folder to this folder path.
+
+The environment for each tool should be already installed.
 
 To run all tools for detection:
 
