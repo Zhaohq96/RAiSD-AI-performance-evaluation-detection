@@ -20,21 +20,23 @@ To download and move the source files to the RAiSD-AI folder:
 wget https://github.com/Zhaohq96/RAiSD-AI-performance-evaluation-detection/archive/refs/heads/master.zip; unzip master.zip; cd RAiSD-AI-performance-evaluation-detection-main/; mv README.md README-RAiSD-AI-performance-evaluation-detection.md; mv * ../; cd ..; rm -r RAiSD-AI-performance-evaluation-detection-main/; rm master.zip; gcc convert.c -o convert -lm; gcc grid.c -o grid -lm; wget -O dataset-example.tar.gz https://figshare.com/ndownloader/files/51400967; tar -xzvf dataset-example.tar.gz; chmod +x ./SCRIPTS/diploSHIC_scripts/diploSHIC_spliting.sh; wget -O dataset-detection.tar.gz https://figshare.com/ndownloader/files/52027712; tar -xzvf dataset-detection.tar.gz; wget -O Pretrained_Model.tar.gz https://figshare.com/ndownloader/files/52048694; tar -xzvf Pretrained_Model.tar.gz
 ```
 
-## Run detection with the trained model from RAiSD-AI-performance-evaluation repo
-If you have trained models using the process_all_datasets_all_tools.sh and obtained the results and model files in folders like _result-mild-bottleneck-1K_ that contains subfolder of each tool, please copy these folder to this folder path.
+## Run detection
+We provide pretrained models of diploshic, faster-nn and faster-nn-g-8. Those models are trained on the datasets with 5K simulations. For quick test, we use those models as the default.
 
-The environment for each tool should be already installed.
-
-To run all tools for detection:
-
-bash run_detection_all_tools.sh dataset_name dataset_size grid_size
-
-A quick command:
+A quick command to test all tools for selective detection:
 ```
-bash run_detection_all_tools.sh mild-bottleneck 1K 100
+bash run_all.sh 
 ```
 
 The results will be collected in Collection.csv and stored in the path _result-detection-mild-bottleneck_
 
 Note that the default number of simulations to detect is 100, error is 0.01, the FPR for obtaining TPR is 0.05, if you want to change any parameters, please go to _scan_dataset.sh_ and modify the parameters of interest.
+
+Users can also specify the path to the model of each tool by using the script _run_detection_all_tools.sh_ with the command:
+
+_bash run_detection_all_tools.sh -d dataset_name -s dataset_size -g grid_size --diploshic-model path_to_diploshic_model --faster-nn-model path_to_fasternn_model --faster-nn-g-8-model path_to_fasternng8_model_
+
+Note that the flag -d, -s and -g are required, and other flags are optional. If the model path is not specified, it will use the pretrained models we provide.
+
+
 
