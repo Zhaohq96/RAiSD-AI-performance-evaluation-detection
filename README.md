@@ -3,6 +3,23 @@
 ## About
 This repository contains supplementary files to reproduce the detection results in the paper "".
 
+## Step by step instructions
+### Step 1: RAiSD-AI download and compile
+Firstly, to download and compile RAiSD-AI via https://github.com/alachins/raisd-ai. Using quick command:
+
+```
+ mkdir RAiSD-AI; cd RAiSD-AI; wget https://github.com/alachins/RAiSD-AI/archive/refs/heads/master.zip; unzip master.zip; cd RAiSD-AI-master; ./compile-RAiSD-AI.sh
+```
+
+### Step 2: Toolchain download
+To enter the RAiSD-AI folder, if you followed the last command to download and compile RAiSD-AI, you would already be in the RAiSD-AI folder.
+
+To download and move the source files to the RAiSD-AI folder:
+
+```
+wget https://github.com/Zhaohq96/RAiSD-AI-performance-evaluation-detection/archive/refs/heads/master.zip; unzip master.zip; cd RAiSD-AI-performance-evaluation-detection-main/; mv README.md README-RAiSD-AI-performance-evaluation-detection.md; mv * ../; cd ..; rm -r RAiSD-AI-performance-evaluation-detection-main/; rm master.zip; gcc convert.c -o convert -lm; gcc grid.c -o grid -lm; wget -O dataset-example.tar.gz https://figshare.com/ndownloader/files/51400967; tar -xzvf dataset-example.tar.gz; chmod +x ./SCRIPTS/diploSHIC_scripts/diploSHIC_spliting.sh;
+```
+
 ## Download and path modification
 To download the repository by the command:
 
