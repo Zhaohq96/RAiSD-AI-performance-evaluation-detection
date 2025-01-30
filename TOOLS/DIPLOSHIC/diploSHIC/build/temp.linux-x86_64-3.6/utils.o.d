@@ -1,0 +1,2 @@
+build/temp.linux-x86_64-3.6/utils.o: utils.c
+commandline: -Ibuild/src.linux-x86_64-3.6/build/src.linux-x86_64-3.6 -I/home/sweepcnn/.conda/envs/diploSHIC/lib/python3.6/site-packages/numpy/core/include -I/home/sweepcnn/.conda/envs/diploSHIC/include/python3.6m -c-Ibuild/src.linux-x86_64-3.6/build/src.linux-x86_64-3.6 -I/home/sweepcnn/.conda/envs/diploSHIC/lib/python3.6/site-packages/numpy/core/include -I/home/sweepcnn/.conda/envs/diploSHIC/include/python3.6m
