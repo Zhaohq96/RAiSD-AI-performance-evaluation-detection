@@ -18,9 +18,10 @@ def parse_ms_file(ms_file):
     
     # Convert positions to float
     positions = [float(pos) for pos in positions]
+    #print(positions)
     return positions, haplotypes
 
-def write_vcf(output_file, positions, haplotypes):
+def write_vcf(output_file, positions, haplotypes, mbs):
     """
     Write positions and haplotypes to a VCF file.
     """
@@ -40,19 +41,26 @@ def write_vcf(output_file, positions, haplotypes):
             alt = "T"  # Arbitrary alternative allele
             genotypes = [hap[idx] for hap in haplotypes]
             genotype_string = "\t".join([f"{g}|{g}" for g in genotypes])  # Assuming diploid
-            vcf.write(f"1\t{int(pos * 1000000)}\t.\t{ref}\t{alt}\t.\t.\t.\tGT\t{genotype_string}\n")
+            #print(mbs)
+            if int(mbs) == 1:
+            	#print("yes")
+            	vcf.write(f"1\t{int(pos * 10)}\t.\t{ref}\t{alt}\t.\t.\t.\tGT\t{genotype_string}\n")
+            else:
+            	vcf.write(f"1\t{int(pos * 1000000)}\t.\t{ref}\t{alt}\t.\t.\t.\tGT\t{genotype_string}\n")
 
 def main():
     parser = argparse.ArgumentParser(description="Convert ms file to VCF format.")
     parser.add_argument("ms_file", help="Input ms file")
     parser.add_argument("vcf_file", help="Output VCF file")
+    parser.add_argument("mbs", help="Output VCF file")
+
     args = parser.parse_args()
 
     # Parse the ms file
     positions, haplotypes = parse_ms_file(args.ms_file)
     
     # Write the VCF file
-    write_vcf(args.vcf_file, positions, haplotypes)
+    write_vcf(args.vcf_file, positions, haplotypes, args.mbs)
 
 if __name__ == "__main__":
     main()
