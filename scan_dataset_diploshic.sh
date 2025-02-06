@@ -38,27 +38,25 @@ diploSHIC_path=./TOOLS/DIPLOSHIC/diploSHIC
 
 echo 'All the results are in seconds.' > "$output"Detection_result.txt
 echo 'Time of processing detection data is:' >> "$output"Detection_result.txt
-start=$(date +"%Y-%m-%d %H:%M:%S");
+start=$(date +%s.%N);
 for ((i=0; i<$num_sim; i++));
 do
 	python $diploSHIC_path/mytrain.py fvecSim diploid "$output"window_"$window_size"/neut"$i".ms "$output"neut"$i".fvec
 	python $diploSHIC_path/mytrain.py fvecSim diploid "$output"window_"$window_size"/sweep"$i".ms "$output"sweep"$i".fvec
 done
-end=$(date +"%Y-%m-%d %H:%M:%S");
-start_s=$(date -d "$start" +%s);
-end_s=$(date -d "$end" +%s);
-echo "$((end_s-start_s)) " >> "$output"Detection_result.txt
+end=$(date +%s.%N);
+execution_time=$(echo "$end - $start" | bc)
+echo "$execution_time" >> "$output"Detection_result.txt
 
 echo 'Time of detection is:' >> "$output"Detection_result.txt
-start=$(date +"%Y-%m-%d %H:%M:%S");
+start=$(date +%s.%N);
 for ((i=0; i<$num_sim; i++));
 do
 	python $diploSHIC_path/mytrain.py predict --simData "$model"model.json "$model"model.weights.hdf5 "$output"neut"$i".fvec "$output"neut"$i".out;
 	python $diploSHIC_path/mytrain.py predict --simData "$model"model.json "$model"model.weights.hdf5 "$output"sweep"$i".fvec "$output"sweep"$i".out;
 done
-end=$(date +"%Y-%m-%d %H:%M:%S");
-start_s=$(date -d "$start" +%s);
-end_s=$(date -d "$end" +%s);
-echo "$((end_s-start_s)) " >> "$output"Detection_result.txt
+end=$(date +%s.%N);
+execution_time=$(echo "$end - $start" | bc)
+echo "$execution_time" >> "$output"Detection_result.txt
 conda deactivate
 
