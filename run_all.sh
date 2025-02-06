@@ -5,9 +5,9 @@
 #datasets=("mild-bottleneck-5K" "severe-bottleneck-5K" "recent-migration-5K" "old-migration-5K" "low-intensity-recombination-hotspot-5K" "high-intensity-recombination-hotspot-5K")
 #datasets=("mild-bottleneck" "severe-bottleneck" "recent-migration" "old-migration" "low-intensity-recombination-hotspot" "high-intensity-recombination-hotspot") # "severe-bottleneck-5K") # "low-intensity-recombination-hotspot-1K" "low-intensity-recombination-hotspot-5K") 
 datasets=("severe-bottleneck")
-grid=3 # grid size
-num_detection=3 # number of simulation to be detected (dplishic and t-rex with grid-based scanning)
-num_detection_trex=3 # number of simulation to be detected (t-rex with its own scanning script)
+grid=9 # grid size
+num_detection=10 # number of simulation to be detected (dplishic and t-rex with grid-based scanning)
+num_detection_trex=10 # number of simulation to be detected (t-rex with its own scanning script)
 
 get_model_path(){
 	local dataset="$1"
