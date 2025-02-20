@@ -17,7 +17,7 @@ To enter the RAiSD-AI folder, if you followed the last command to download and c
 To download and move the source files to the RAiSD-AI folder:
 
 ```
-wget https://github.com/Zhaohq96/RAiSD-AI-performance-evaluation-detection/archive/refs/heads/master.zip; unzip master.zip; cd RAiSD-AI-performance-evaluation-detection-main/; mv README.md README-RAiSD-AI-performance-evaluation-detection.md; mv * ../; cd ..; rm -r RAiSD-AI-performance-evaluation-detection-main/; rm master.zip; gcc convert.c -o convert -lm; gcc grid.c -o grid -lm; wget -O dataset-example.tar.gz https://figshare.com/ndownloader/files/51400967; tar -xzvf dataset-example.tar.gz; chmod +x ./SCRIPTS/diploSHIC_scripts/diploSHIC_spliting.sh; wget -O dataset-detection.tar.gz https://figshare.com/ndownloader/files/52027712; tar -xzvf dataset-detection.tar.gz; wget -O Pretrained_Model.tar.gz https://figshare.com/ndownloader/files/52048694; tar -xzvf Pretrained_Model.tar.gz
+wget https://github.com/Zhaohq96/RAiSD-AI-performance-evaluation-detection/archive/refs/heads/master.zip; unzip master.zip; cd RAiSD-AI-performance-evaluation-detection-main/; mv README.md README-RAiSD-AI-performance-evaluation-detection.md; mv * ../; cd ..; rm -r RAiSD-AI-performance-evaluation-detection-main/; rm master.zip; gcc convert.c -o convert -lm; gcc grid.c -o grid -lm; wget -O dataset-example.tar.gz https://figshare.com/ndownloader/files/51400967; tar -xzvf dataset-example.tar.gz; chmod +x ./SCRIPTS/diploSHIC_scripts/diploSHIC_spliting.sh; wget -O dataset-detection.tar.gz https://figshare.com/ndownloader/files/52027712; tar -xzvf dataset-detection.tar.gz; wget -O Pretrained_Model.tar.gz https://figshare.com/ndownloader/files/52499765; tar -xzvf Pretrained_Model.tar.gz
 ```
 
 ## Run detection
