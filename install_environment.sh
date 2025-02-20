@@ -39,8 +39,9 @@ elif [ "$1" = "surfdawave" ]; then
 	conda deactivate
 	
 elif [ "$1" = "t-rex" ]; then
-	conda env create -f ENVIRONMENT/environment-T-REx.yml
+	conda create -n T-REx python=3.8.8
 	conda activate T-REx
+	conda env update --file ENVIRONMENT/environment-T-REx.yml --prune
 	Rscript ENVIRONMENT/environment-T-REx.R
 	pip3 install pandas numpy==1.24 scipy==1.10 argparse seaborn
 	pip3 install -U scikit-image
