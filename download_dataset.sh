@@ -62,6 +62,21 @@ elif [ "$1" = "high-intensity-recombination-hotspot-1K" ]; then
 	wget -O dataset-"$1".tar.gz https://figshare.com/ndownloader/files/51375416
 	tar -xzvf dataset-"$1".tar.gz
 
+elif [ "$1" = "low-intensity-recombination-hotspot-merge-2K" ]; then
+        wget -O dataset-"$1".tar.gz https://figshare.com/ndownloader/files/52436963
+        tar -xzvf dataset-"$1".tar.gz
+
+elif [ "$1" = "high-intensity-recombination-hotspot-merge-2K" ]; then
+        wget -O dataset-"$1".tar.gz https://figshare.com/ndownloader/files/52435505
+        tar -xzvf dataset-"$1".tar.gz
+
+elif [ "$1" = "low-intensity-recombination-hotspot-merge-1K" ]; then
+        wget -O dataset-"$1".tar.gz https://figshare.com/ndownloader/files/52452488
+        tar -xzvf dataset-"$1".tar.gz
+
+elif [ "$1" = "high-intensity-recombination-hotspot-merge-1K" ]; then
+        wget -O dataset-"$1".tar.gz https://figshare.com/ndownloader/files/52452272
+        tar -xzvf dataset-"$1".tar.gz
 
 # Datasets with 5K simulations
 elif [ "$1" = "mild-bottleneck-5K" ]; then
